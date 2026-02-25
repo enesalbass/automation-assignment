@@ -9,6 +9,7 @@ public class LoginPage extends BasePage {
     private final By username = By.id("user-name");
     private final By password = By.id("password");
     private final By loginBtn = By.id("login-button");
+    private final By error = By.cssSelector("h3[data-test='error']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -18,5 +19,13 @@ public class LoginPage extends BasePage {
         type(username, user);
         type(password, pass);
         click(loginBtn);
+    }
+
+    public boolean hasError() {
+        return isVisible(error);
+    }
+
+    public String getErrorMessage() {
+        return text(error);
     }
 }
