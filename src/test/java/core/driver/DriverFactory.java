@@ -1,6 +1,5 @@
 package core.driver;
 
-import core.config.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,16 +13,20 @@ public class DriverFactory {
 
         if (driver == null) {
 
-            String browser = ConfigReader.getOrDefault("browser", "chrome");
-            boolean headless = ConfigReader.getBool("headless");
+            String browser = "chrome";
+            boolean headless = false;
 
             if (browser.equalsIgnoreCase("chrome")) {
+
                 WebDriverManager.chromedriver().setup();
 
                 ChromeOptions options = new ChromeOptions();
+
                 if (headless) {
                     options.addArguments("--headless=new");
                 }
+
+                options.addArguments("--window-size=1400,900");
 
                 driver = new ChromeDriver(options);
             }

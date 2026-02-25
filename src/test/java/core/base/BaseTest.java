@@ -1,6 +1,5 @@
 package core.base;
 
-import core.config.ConfigReader;
 import core.driver.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,10 +11,7 @@ public abstract class BaseTest {
 
     @BeforeEach
     void setUp() {
-        ConfigReader.init();
-        driver = DriverFactory.getDriver();
-        driver.manage().deleteAllCookies();
-        driver.get(ConfigReader.get("baseUrl"));
+        driver.get("https://www.saucedemo.com/");
     }
 
     @AfterEach
