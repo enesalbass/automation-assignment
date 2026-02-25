@@ -1,5 +1,6 @@
 package core.driver;
 
+import core.config.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,8 +14,8 @@ public class DriverFactory {
 
         if (driver == null) {
 
-            String browser = "chrome";
-            boolean headless = false;
+            String browser = ConfigReader.getOrDefault("browser", "chrome");
+            boolean headless = ConfigReader.getBool("headless");
 
             if (browser.equalsIgnoreCase("chrome")) {
 
