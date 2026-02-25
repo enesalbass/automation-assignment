@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 public class CartPage extends BasePage {
 
     private final By cartItem = By.className("cart_item");
+    private final By checkoutBtn = By.id("checkout");
+
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -14,5 +16,9 @@ public class CartPage extends BasePage {
 
     public boolean hasItem() {
         return isVisible(cartItem);
+    }
+
+    public void clickCheckout() {
+        click(checkoutBtn);
     }
 }
