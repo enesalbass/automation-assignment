@@ -48,4 +48,17 @@ public abstract class BasePage {
             return false;
         }
     }
+
+    protected void acceptAlertIfPresent() {
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            driver.switchTo().alert().accept();
+        } catch (TimeoutException ignored) {
+        }
+    }
+
+    protected void jsClick(By locator) {
+        WebElement el = clickable(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+    }
 }
