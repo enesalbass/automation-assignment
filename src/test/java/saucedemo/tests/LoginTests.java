@@ -3,12 +3,14 @@ package saucedemo.tests;
 import core.base.BaseTest;
 import core.data.TestUsers;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import saucedemo.pages.InventoryPage;
 import saucedemo.pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("saucedemo")
 public class LoginTests extends BaseTest {
 
     @Test

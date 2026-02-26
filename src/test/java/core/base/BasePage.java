@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public abstract class BasePage {
 
@@ -49,6 +50,24 @@ public abstract class BasePage {
         }
     }
 
+    protected void jsClick(By locator) {
+        WebElement el = clickable(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+    }
+
+    protected boolean isPresent(By locator) {
+        try {
+            List<WebElement> els = driver.findElements(locator);
+            return !els.isEmpty();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    protected void waitUntilNotVisible(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
     protected void acceptAlertIfPresent() {
         try {
             wait.until(ExpectedConditions.alertIsPresent());
@@ -57,8 +76,4 @@ public abstract class BasePage {
         }
     }
 
-    protected void jsClick(By locator) {
-        WebElement el = clickable(locator);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
-    }
 }

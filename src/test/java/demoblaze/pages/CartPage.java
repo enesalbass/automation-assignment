@@ -22,11 +22,14 @@ public class CartPage extends BasePage {
     }
 
     public boolean hasProduct(String productName) {
-        return isVisible(cartTable) && isVisible(rowByProductName(productName));
+        if (!isVisible(cartTable)) return false;
+        return isPresent(rowByProductName(productName));
     }
 
     public void deleteProduct(String productName) {
+        By row = rowByProductName(productName);
         click(deleteLinkByProductName(productName));
+        waitUntilNotVisible(row);
     }
 
     public void clickPlaceOrder() {

@@ -4,6 +4,7 @@ package core.base;
 import core.config.ConfigReader;
 import core.driver.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public abstract class BaseTest {
 
     protected WebDriver driver;
+
+    @BeforeAll
+    static void beforeAll() {
+        ConfigReader.init();
+    }
 
     @BeforeEach
     void setUp() {
